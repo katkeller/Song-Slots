@@ -271,14 +271,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2029555630}
-        m_MethodName: SetClipToBePlayed
+        m_MethodName: SetClipToBePlayedByButton
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 8
+          m_StringArgument: 7
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1022,14 +1022,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2029555630}
-        m_MethodName: SetClipToBePlayed
+        m_MethodName: SetClipToBePlayedByButton
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 2
+          m_StringArgument: 1
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1250,14 +1250,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2029555630}
-        m_MethodName: SetClipToBePlayed
+        m_MethodName: SetClipToBePlayedByButton
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 7
+          m_StringArgument: 6
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1379,14 +1379,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2029555630}
-        m_MethodName: SetClipToBePlayed
+        m_MethodName: SetClipToBePlayedByButton
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 9
+          m_StringArgument: 8
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1508,14 +1508,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2029555630}
-        m_MethodName: SetClipToBePlayed
+        m_MethodName: SetClipToBePlayedByButton
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 1
+          m_StringArgument: 0
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1637,14 +1637,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2029555630}
-        m_MethodName: SetClipToBePlayed
+        m_MethodName: SetClipToBePlayedByButton
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 4
+          m_StringArgument: 3
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1766,14 +1766,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2029555630}
-        m_MethodName: SetClipToBePlayed
+        m_MethodName: SetClipToBePlayedByButton
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 5
+          m_StringArgument: 4
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1974,14 +1974,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2029555630}
-        m_MethodName: SetClipToBePlayed
+        m_MethodName: SetClipToBePlayedByButton
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 3
+          m_StringArgument: 2
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -2103,14 +2103,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2029555630}
-        m_MethodName: SetClipToBePlayed
+        m_MethodName: SetClipToBePlayedByButton
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 6
+          m_StringArgument: 5
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -2274,15 +2274,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90593a5baf9cd7641a6dc37e67a57084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip1: {fileID: 0}
-  clip2: {fileID: 0}
-  clip3: {fileID: 0}
-  clip4: {fileID: 0}
-  clip5: {fileID: 0}
-  clip6: {fileID: 0}
-  clip7: {fileID: 0}
-  clip8: {fileID: 0}
-  clip9: {fileID: 0}
+  audioClip:
+  - {fileID: 8300000, guid: 3dc56a8efc107493f9ca177cf4f22206, type: 3}
+  - {fileID: 8300000, guid: 1e2140fd2e78448d7ab3ab22d1b15c24, type: 3}
+  - {fileID: 8300000, guid: 10f805526d744498ab84469277a99009, type: 3}
+  - {fileID: 8300000, guid: 2783b143420bf4d1a86045742eece7b0, type: 3}
+  - {fileID: 8300000, guid: 5bcb5b4259d1144c7b763f031aed2d15, type: 3}
+  - {fileID: 8300000, guid: f9c8a73fd76fe4df0b5d01f8d278d88e, type: 3}
+  - {fileID: 8300000, guid: 5a3ff852626bb41eb8d3029abb2ed83a, type: 3}
+  - {fileID: 8300000, guid: 85bd60e609b054128ae0a9de6bf5aa9b, type: 3}
+  - {fileID: 8300000, guid: 3dc56a8efc107493f9ca177cf4f22206, type: 3}
   audioSource1: {fileID: 2029555632}
   audioSource2: {fileID: 2029555631}
 --- !u!82 &2029555631

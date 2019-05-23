@@ -32,8 +32,8 @@ public class AudioManager : MonoBehaviour
         //audioSource = GetComponent<AudioSource>();
         audioSource1.PlayOneShot(audioClip[0], 1.0f);
         audioSource1IsPlaying = true;
-        currentAudioSource = audioSource1;
-        audioSourceToPlay = audioSource2;
+        //currentAudioSource = audioSource1;
+        //audioSourceToPlay = audioSource2;
         currentPlayingClip = audioClip[0];
     }
 
@@ -126,22 +126,30 @@ public class AudioManager : MonoBehaviour
     /// - fade volume up over time
     /// - fade volume of first clip down over time
     /// - set new audiosource as the one that's playing
+    /// - make it so that if the selected clip is already playing, it won't start over
+    /// - display name of currently playing song
+    /// - set audio visualizer to current audiosource (also add audiovisualizer)
     /// </summary>
     private void FadePlayingClip()
     {
-        if (audioSource1IsPlaying)
+        if(clipToPlay != currentPlayingClip)
         {
-            audioSource2.PlayOneShot(clipToPlay, 1.0f);
-            audioSource1.Stop();
-            audioSource1IsPlaying = false;
-            audioSource2IsPlaying = true;
-        }
-        else if (audioSource2IsPlaying)
-        {
-            audioSource1.PlayOneShot(clipToPlay, 1.0f);
-            audioSource2.Stop();
-            audioSource2IsPlaying = false;
-            audioSource1IsPlaying = true;
+            if (audioSource1IsPlaying)
+            {
+                audioSource2.PlayOneShot(clipToPlay, 1.0f);
+                audioSource1.Stop();
+                audioSource1IsPlaying = false;
+                audioSource2IsPlaying = true;
+            }
+            else if (audioSource2IsPlaying)
+            {
+                audioSource1.PlayOneShot(clipToPlay, 1.0f);
+                audioSource2.Stop();
+                audioSource2IsPlaying = false;
+                audioSource1IsPlaying = true;
+            }
+
+            currentPlayingClip = clipToPlay;
         }
         //audioSourceToPlay.PlayOneShot(clipToPlay, 1.0f);
 
