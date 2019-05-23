@@ -3035,7 +3035,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3dc56a8efc107493f9ca177cf4f22206, type: 3}
   audioSource1: {fileID: 2029555632}
   audioSource2: {fileID: 2029555631}
-  timeToFade: 5
+  timeToFade: 3
   songNameText: {fileID: 1363536524}
 --- !u!82 &2029555631
 AudioSource:
