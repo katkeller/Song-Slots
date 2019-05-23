@@ -19,6 +19,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioSource audioSource1,audioSource2;
 
+    [SerializeField]
+    private float timeToFade = 2.0f;
+
     private AudioClip currentPlayingClip;
     private AudioClip clipToPlay;
     private int buttonNumberToPlay;
@@ -32,8 +35,8 @@ public class AudioManager : MonoBehaviour
         //audioSource = GetComponent<AudioSource>();
         audioSource1.PlayOneShot(audioClip[0], 1.0f);
         audioSource1IsPlaying = true;
-        //currentAudioSource = audioSource1;
-        //audioSourceToPlay = audioSource2;
+        currentAudioSource = audioSource1;
+        audioSourceToPlay = audioSource2;
         currentPlayingClip = audioClip[0];
     }
 
@@ -43,47 +46,47 @@ public class AudioManager : MonoBehaviour
         if (Input.GetButtonDown("1"))
         {
             clipToPlay = audioClip[0];
-            FadePlayingClip();
+            FadeBetweenClips();
         }
         else if (Input.GetButtonDown("2"))
         {
             clipToPlay = audioClip[1];
-            FadePlayingClip();
+            FadeBetweenClips();
         }
         else if (Input.GetButtonDown("3"))
         {
             clipToPlay = audioClip[2];
-            FadePlayingClip();
+            FadeBetweenClips();
         }
         else if (Input.GetButtonDown("4"))
         {
             clipToPlay = audioClip[3];
-            FadePlayingClip();
+            FadeBetweenClips();
         }
         else if (Input.GetButtonDown("5"))
         {
             clipToPlay = audioClip[4];
-            FadePlayingClip();
+            FadeBetweenClips();
         }
         else if (Input.GetButtonDown("6"))
         {
             clipToPlay = audioClip[5];
-            FadePlayingClip();
+            FadeBetweenClips();
         }
         else if (Input.GetButtonDown("7"))
         {
             clipToPlay = audioClip[6];
-            FadePlayingClip();
+            FadeBetweenClips();
         }
         else if (Input.GetButtonDown("8"))
         {
             clipToPlay = audioClip[7];
-            FadePlayingClip();
+            FadeBetweenClips();
         }
         else if (Input.GetButtonDown("9"))
         {
             clipToPlay = audioClip[8];
-            FadePlayingClip();
+            FadeBetweenClips();
         }
     }
 
@@ -112,7 +115,7 @@ public class AudioManager : MonoBehaviour
         //else if (buttonNumberToPlay == 9)
                 //clipToPlay = clip9;
 
-        FadePlayingClip();
+        FadeBetweenClips();
     }
 
     public void SetClipToPlayByKey()
@@ -130,29 +133,146 @@ public class AudioManager : MonoBehaviour
     /// - display name of currently playing song
     /// - set audio visualizer to current audiosource (also add audiovisualizer)
     /// </summary>
-    private void FadePlayingClip()
+    private void FadeBetweenClips()
     {
         if(clipToPlay != currentPlayingClip)
         {
-            if (audioSource1IsPlaying)
+            StartCoroutine(FadeOutAudio());
+
+            //StartCoroutine(FadeInAudio());
+
+            if (currentAudioSource == audioSource1)
             {
                 audioSource2.PlayOneShot(clipToPlay, 1.0f);
-                audioSource1.Stop();
-                audioSource1IsPlaying = false;
-                audioSource2IsPlaying = true;
             }
-            else if (audioSource2IsPlaying)
+            else if (currentAudioSource == audioSource2)
             {
                 audioSource1.PlayOneShot(clipToPlay, 1.0f);
-                audioSource2.Stop();
-                audioSource2IsPlaying = false;
-                audioSource1IsPlaying = true;
             }
 
-            currentPlayingClip = clipToPlay;
+            //if (audioSource1IsPlaying)
+            //{
+            //    audioSource2.PlayOneShot(clipToPlay, 1.0f);
+            //    //audioSource1.Stop();
+            //    //audioSource1IsPlaying = false;
+            //    audioSource2IsPlaying = true;
+
+            //}
+            //else if (audioSource2IsPlaying)
+            //{
+
+            //    audioSource1.PlayOneShot(clipToPlay, 1.0f);
+            //    //audioSource2.Stop();
+            //    //audioSource2IsPlaying = false;
+            //    audioSource1IsPlaying = true;
+            //}
+
+            //currentPlayingClip = clipToPlay;
         }
         //audioSourceToPlay.PlayOneShot(clipToPlay, 1.0f);
 
         //currentAudioSource = audioSourceToPlay;
+    }
+
+    private IEnumerator FadeOutAudio()
+    {
+        float startVolume = currentAudioSource.volume;
+
+        while (currentAudioSource.volume > 0.0f)
+        {
+            currentAudioSource.volume -= startVolume * Time.deltaTime / timeToFade;
+            //currentAudioSource.volume = Mathf.Lerp(currentAudioSource.volume, 0, timeToFade);
+            yield return null;
+        }
+
+        currentAudioSource.Stop();
+        currentAudioSource.volume = startVolume;
+
+        if (currentAudioSource == audioSource1)
+        {
+            currentAudioSource = audioSource2;
+            audioSourceToPlay = audioSource1;
+        }
+        else if (currentAudioSource == audioSource2)
+        {
+            currentAudioSource = audioSource1;
+            audioSourceToPlay = audioSource2;
+        }
+
+        currentPlayingClip = clipToPlay;
+
+        //if (audioSource1IsPlaying)
+        //{
+        //    while (audioSource1.volume > 0.0f)
+        //    {
+        //        audioSource1.volume = Mathf.Lerp(audioSource1.volume, 0, timeToFade);
+        //        yield return null;
+        //    }
+
+        //    audioSource1.Stop();
+        //    audioSource1IsPlaying = false;
+        //}
+        //else if (audioSource2IsPlaying)
+        //{
+        //    while (audioSource2.volume > 0.0f)
+        //    {
+        //        audioSource2.volume = Mathf.Lerp(audioSource2.volume, 0, timeToFade);
+        //        yield return null;
+        //    }
+
+        //    audioSource2.Stop();
+        //    audioSource2IsPlaying = false;
+        //}
+    }
+
+    private IEnumerator FadeInAudio()
+    {
+        audioSourceToPlay.PlayOneShot(clipToPlay, 0.0f);
+
+        while (audioSourceToPlay.volume < 1.0f)
+        {
+            audioSourceToPlay.volume = Mathf.Lerp(audioSourceToPlay.volume, 1, timeToFade);
+            yield return null;
+        }
+
+        if (audioSourceToPlay == audioSource1)
+        {
+            audioSourceToPlay = audioSource2;
+            currentAudioSource = audioSource1;
+        }
+        else if (audioSourceToPlay == audioSource2)
+        {
+            audioSourceToPlay = audioSource1;
+            currentAudioSource = audioSource2;
+        }
+
+        currentPlayingClip = clipToPlay;
+
+        //if (audioSource2IsPlaying)
+        //{
+        //    //audioSource1.volume = 0.0f;
+        //    audioSource1.PlayOneShot(clipToPlay, 0.0f);
+
+        //    while (audioSource1.volume < 1.0f)
+        //    {
+        //        audioSource1.volume = Mathf.Lerp(audioSource1.volume, 0, timeToFade);
+        //        yield return null;
+        //    }
+
+        //    audioSource1IsPlaying = true;
+        //}
+        //else if (audioSource1IsPlaying)
+        //{
+        //    //audioSource2.volume = 0.0f;
+        //    audioSource2.PlayOneShot(clipToPlay, 0.0f);
+
+        //    while (audioSource2.volume < 1.0f)
+        //    {
+        //        audioSource2.volume = Mathf.Lerp(audioSource2.volume, 0, timeToFade);
+        //        yield return null;
+        //    }
+
+        //    audioSource2IsPlaying = true;
+        //}
     }
 }
