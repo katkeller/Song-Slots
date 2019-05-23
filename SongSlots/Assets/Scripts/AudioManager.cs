@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private float timeToFade = 2.0f;
 
+    [SerializeField]
+    private Text songNameText;
+
     private AudioClip currentPlayingClip;
     private AudioClip clipToPlay;
     private int buttonNumberToPlay;
@@ -35,6 +39,7 @@ public class AudioManager : MonoBehaviour
     {
 
         //audioSource = GetComponent<AudioSource>();
+        songNameText.text = audioClip[0].name;
         audioSource1.PlayOneShot(audioClip[0], 1.0f);
         audioSource1IsPlaying = true;
         currentAudioSource = audioSource1;
@@ -120,11 +125,6 @@ public class AudioManager : MonoBehaviour
         FadeBetweenClips();
     }
 
-    public void SetClipToPlayByKey()
-    {
-
-    }
-
     /// <summary>
     /// TODO:
     /// - Set clip for second audiosource
@@ -134,11 +134,13 @@ public class AudioManager : MonoBehaviour
     /// - make it so that if the selected clip is already playing, it won't start over
     /// - display name of currently playing song
     /// - set audio visualizer to current audiosource (also add audiovisualizer)
+    /// - fix bug where audio stops if you change between clips too quickly
     /// </summary>
     private void FadeBetweenClips()
     {
         if(clipToPlay != currentPlayingClip)
         {
+            songNameText.text = clipToPlay.name;
             StartCoroutine(FadeOutAudio());
 
             //StartCoroutine(FadeInAudio());
