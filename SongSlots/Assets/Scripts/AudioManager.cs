@@ -29,6 +29,8 @@ public class AudioManager : MonoBehaviour
     private AudioSource currentAudioSource;
     private AudioSource audioSourceToPlay;
 
+    //public static Event Action ChangeAudioSourceToSample;
+
     void Start()
     {
 
@@ -144,6 +146,7 @@ public class AudioManager : MonoBehaviour
             if (currentAudioSource == audioSource1)
             {
                 audioSource2.PlayOneShot(clipToPlay, 1.0f);
+                //ChangeAudioSourceToSample?.Invoke();
             }
             else if (currentAudioSource == audioSource2)
             {
@@ -181,7 +184,6 @@ public class AudioManager : MonoBehaviour
         while (currentAudioSource.volume > 0.0f)
         {
             currentAudioSource.volume -= startVolume * Time.deltaTime / timeToFade;
-            //currentAudioSource.volume = Mathf.Lerp(currentAudioSource.volume, 0, timeToFade);
             yield return null;
         }
 
@@ -200,29 +202,6 @@ public class AudioManager : MonoBehaviour
         }
 
         currentPlayingClip = clipToPlay;
-
-        //if (audioSource1IsPlaying)
-        //{
-        //    while (audioSource1.volume > 0.0f)
-        //    {
-        //        audioSource1.volume = Mathf.Lerp(audioSource1.volume, 0, timeToFade);
-        //        yield return null;
-        //    }
-
-        //    audioSource1.Stop();
-        //    audioSource1IsPlaying = false;
-        //}
-        //else if (audioSource2IsPlaying)
-        //{
-        //    while (audioSource2.volume > 0.0f)
-        //    {
-        //        audioSource2.volume = Mathf.Lerp(audioSource2.volume, 0, timeToFade);
-        //        yield return null;
-        //    }
-
-        //    audioSource2.Stop();
-        //    audioSource2IsPlaying = false;
-        //}
     }
 
     private IEnumerator FadeInAudio()
@@ -234,45 +213,5 @@ public class AudioManager : MonoBehaviour
             audioSourceToPlay.volume = Mathf.Lerp(audioSourceToPlay.volume, 1, timeToFade);
             yield return null;
         }
-
-        if (audioSourceToPlay == audioSource1)
-        {
-            audioSourceToPlay = audioSource2;
-            currentAudioSource = audioSource1;
-        }
-        else if (audioSourceToPlay == audioSource2)
-        {
-            audioSourceToPlay = audioSource1;
-            currentAudioSource = audioSource2;
-        }
-
-        currentPlayingClip = clipToPlay;
-
-        //if (audioSource2IsPlaying)
-        //{
-        //    //audioSource1.volume = 0.0f;
-        //    audioSource1.PlayOneShot(clipToPlay, 0.0f);
-
-        //    while (audioSource1.volume < 1.0f)
-        //    {
-        //        audioSource1.volume = Mathf.Lerp(audioSource1.volume, 0, timeToFade);
-        //        yield return null;
-        //    }
-
-        //    audioSource1IsPlaying = true;
-        //}
-        //else if (audioSource1IsPlaying)
-        //{
-        //    //audioSource2.volume = 0.0f;
-        //    audioSource2.PlayOneShot(clipToPlay, 0.0f);
-
-        //    while (audioSource2.volume < 1.0f)
-        //    {
-        //        audioSource2.volume = Mathf.Lerp(audioSource2.volume, 0, timeToFade);
-        //        yield return null;
-        //    }
-
-        //    audioSource2IsPlaying = true;
-        //}
     }
 }
