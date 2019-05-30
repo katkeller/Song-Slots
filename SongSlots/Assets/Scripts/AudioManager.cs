@@ -24,7 +24,7 @@ public class AudioManager : MonoBehaviour
     private float timeToFade = 2.0f;
 
     [SerializeField]
-    private Text songNameText, fadingText, fadingCurrentValueText;
+    private Text songNameText, fadingText, fadingCurrentValueText, volumeCurrentValueText;
 
     [SerializeField]
     private string fadingTextString = "Fading...";
@@ -128,6 +128,19 @@ public class AudioManager : MonoBehaviour
         else if (isFading)
         {
             fadingText.text = "Cannot change fade speed while fading.";
+        }
+    }
+
+    public void SetVolume()
+    {
+        if (!isFading)
+        {
+            volumeCurrentValueText.text = volumeSlider.value.ToString("0.00");
+            currentAudioSource.volume = volumeSlider.value;
+        }
+        else if (isFading)
+        {
+            fadingText.text = "Cannot change volume while fading.";
         }
     }
 
