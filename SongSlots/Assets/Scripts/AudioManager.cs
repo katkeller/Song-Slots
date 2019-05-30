@@ -154,6 +154,7 @@ public class AudioManager : MonoBehaviour
     /// - display name of currently playing song
     /// - set audio visualizer to current audiosource (also add audiovisualizer)
     /// - fix bug where audio stops if you change between clips too quickly
+    /// - add pause toggle
     /// </summary>
     private void FadeBetweenClips()
     {

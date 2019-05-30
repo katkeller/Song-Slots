@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class AudioSampleCollector : MonoBehaviour
 {
     [SerializeField]
-    private AudioSource audioSource1, audioSource2;
+    private AudioSource audioSource;
 
     public static float[] audioBand = new float[8];
     public static float[] audioBandBuffer = new float[8];
@@ -17,7 +16,6 @@ public class AudioSampleCollector : MonoBehaviour
     private float[] frequencyBandHighest = new float[8];
     private float highDecreaseSpeed = 1.2f;
     private float lowDecreaseSpeed = 0.005f;
-    private AudioSource audioSourceToUse;
 
     void Start()
     {
@@ -48,7 +46,7 @@ public class AudioSampleCollector : MonoBehaviour
 
     private void GetSpectrumAudioSource()
     {
-        audioSourceToUse.GetSpectrumData(samples, 0, FFTWindow.Blackman);
+        audioSource.GetSpectrumData(samples, 0, FFTWindow.Blackman);
     }
 
     private void FrequencyBandBuffer()
