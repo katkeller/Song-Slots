@@ -24,10 +24,13 @@ public class AudioManager : MonoBehaviour
     private float timeToFade = 2.0f;
 
     [SerializeField]
-    private Text songNameText, fadingText;
+    private Text songNameText, fadingText, fadingCurrentValueText;
 
     [SerializeField]
     private string fadingTextString = "Fading...";
+
+    [SerializeField]
+    private Slider fadeTimeSlider, volumeSlider;
 
     private AudioClip currentPlayingClip;
     private AudioClip clipToPlay;
@@ -112,6 +115,19 @@ public class AudioManager : MonoBehaviour
             buttonNumberToPlay = Int32.Parse(buttonNumber);
             clipToPlay = audioClip[buttonNumberToPlay];
             FadeBetweenClips();
+        }
+    }
+
+    public void SetFadeSpeed()
+    {
+        if (!isFading)
+        {
+            fadingCurrentValueText.text = fadeTimeSlider.value.ToString();
+            timeToFade = fadeTimeSlider.value;
+        }
+        else if (isFading)
+        {
+            fadingText.text = "Cannot change fade speed while fading.";
         }
     }
 
