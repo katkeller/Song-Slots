@@ -24,7 +24,10 @@ public class AudioManager : MonoBehaviour
     private float timeToFade = 2.0f;
 
     [SerializeField]
-    private Text songNameText;
+    private Text songNameText, fadingText;
+
+    [SerializeField]
+    private string fadingTextString = "Fading...";
 
     private AudioClip currentPlayingClip;
     private AudioClip clipToPlay;
@@ -32,6 +35,7 @@ public class AudioManager : MonoBehaviour
     private bool audioSource1IsPlaying, audioSource2IsPlaying;
     private AudioSource currentAudioSource;
     private AudioSource audioSourceToPlay;
+    private bool isFading = false;
 
     //public static Event Action ChangeAudioSourceToSample;
 
@@ -45,84 +49,70 @@ public class AudioManager : MonoBehaviour
         currentAudioSource = audioSource1;
         audioSourceToPlay = audioSource2;
         currentPlayingClip = audioClip[0];
+        fadingText.text = string.Empty;
     }
 
     private void Update()
     {
-        //find out if there's a cleaner way to do this?
-        if (Input.GetButtonDown("1"))
+        if (!isFading)
         {
-            clipToPlay = audioClip[0];
-            FadeBetweenClips();
-        }
-        else if (Input.GetButtonDown("2"))
-        {
-            clipToPlay = audioClip[1];
-            FadeBetweenClips();
-        }
-        else if (Input.GetButtonDown("3"))
-        {
-            clipToPlay = audioClip[2];
-            FadeBetweenClips();
-        }
-        else if (Input.GetButtonDown("4"))
-        {
-            clipToPlay = audioClip[3];
-            FadeBetweenClips();
-        }
-        else if (Input.GetButtonDown("5"))
-        {
-            clipToPlay = audioClip[4];
-            FadeBetweenClips();
-        }
-        else if (Input.GetButtonDown("6"))
-        {
-            clipToPlay = audioClip[5];
-            FadeBetweenClips();
-        }
-        else if (Input.GetButtonDown("7"))
-        {
-            clipToPlay = audioClip[6];
-            FadeBetweenClips();
-        }
-        else if (Input.GetButtonDown("8"))
-        {
-            clipToPlay = audioClip[7];
-            FadeBetweenClips();
-        }
-        else if (Input.GetButtonDown("9"))
-        {
-            clipToPlay = audioClip[8];
-            FadeBetweenClips();
+            //find out if there's a cleaner way to do this?
+            if (Input.GetButtonDown("1"))
+            {
+                clipToPlay = audioClip[0];
+                FadeBetweenClips();
+            }
+            else if (Input.GetButtonDown("2"))
+            {
+                clipToPlay = audioClip[1];
+                FadeBetweenClips();
+            }
+            else if (Input.GetButtonDown("3"))
+            {
+                clipToPlay = audioClip[2];
+                FadeBetweenClips();
+            }
+            else if (Input.GetButtonDown("4"))
+            {
+                clipToPlay = audioClip[3];
+                FadeBetweenClips();
+            }
+            else if (Input.GetButtonDown("5"))
+            {
+                clipToPlay = audioClip[4];
+                FadeBetweenClips();
+            }
+            else if (Input.GetButtonDown("6"))
+            {
+                clipToPlay = audioClip[5];
+                FadeBetweenClips();
+            }
+            else if (Input.GetButtonDown("7"))
+            {
+                clipToPlay = audioClip[6];
+                FadeBetweenClips();
+            }
+            else if (Input.GetButtonDown("8"))
+            {
+                clipToPlay = audioClip[7];
+                FadeBetweenClips();
+            }
+            else if (Input.GetButtonDown("9"))
+            {
+                clipToPlay = audioClip[8];
+                FadeBetweenClips();
+            }
         }
     }
 
     public void SetClipToBePlayedByButton(string buttonNumber)
     {
-        buttonNumberToPlay = Int32.Parse(buttonNumber);
-
-        clipToPlay = audioClip[buttonNumberToPlay];
-
-        //if (buttonNumberToPlay == 1)
-        //    clipToPlay = clip1;
-        //else if (buttonNumberToPlay == 2)
-        //    clipToPlay = clip2;
-        //else if (buttonNumberToPlay == 3)
-        //    clipToPlay = clip3;
-        //else if (buttonNumberToPlay == 4)
-        //    clipToPlay = clip4;
-        //else if (buttonNumberToPlay == 5)
-        //    clipToPlay = clip5;
-        //else if (buttonNumberToPlay == 6)
-        //    clipToPlay = clip6;
-        //else if (buttonNumberToPlay == 7)
-        //    clipToPlay = clip7;
-        //else if (buttonNumberToPlay == 8)
-        //    clipToPlay = clip8;
-        //else if (buttonNumberToPlay == 9)
-                //clipToPlay = clip9;
-
-        FadeBetweenClips();
+        if (!isFading)
+        {
+            buttonNumberToPlay = Int32.Parse(buttonNumber);
+            clipToPlay = audioClip[buttonNumberToPlay];
+            FadeBetweenClips();
+        }
     }
 
     /// <summary>
@@ -140,6 +130,7 @@ public class AudioManager : MonoBehaviour
     {
         if(clipToPlay != currentPlayingClip)
         {
+            
             songNameText.text = clipToPlay.name;
             StartCoroutine(FadeOutAudio());
 
@@ -181,6 +172,8 @@ public class AudioManager : MonoBehaviour
 
     private IEnumerator FadeOutAudio()
     {
+        isFading = true;
+        fadingText.text = fadingTextString;
         float startVolume = currentAudioSource.volume;
 
         while (currentAudioSource.volume > 0.0f)
@@ -204,10 +197,13 @@ public class AudioManager : MonoBehaviour
         }
 
         currentPlayingClip = clipToPlay;
+        fadingText.text = string.Empty;
+        isFading = false;
     }
 
     private IEnumerator FadeInAudio()
     {
+        isFading = true;
         audioSourceToPlay.PlayOneShot(clipToPlay, 0.0f);
 
         while (audioSourceToPlay.volume < 1.0f)
@@ -215,5 +211,13 @@ public class AudioManager : MonoBehaviour
             audioSourceToPlay.volume = Mathf.Lerp(audioSourceToPlay.volume, 1, timeToFade);
             yield return null;
         }
+        isFading = false;
     }
+
+    //private IEnumerator SetIsFading()
+    //{
+    //    isFading = true;
+    //    yield return new WaitForSeconds(timeToFade);
+    //    isFading = false;
+    //}
 }
