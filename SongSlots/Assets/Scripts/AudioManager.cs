@@ -11,6 +11,9 @@ public class AudioManager : MonoBehaviour
     /// - add volume selection functionality for each clip.
     /// - make clips fade in/out
     /// - maybe add 2D audio visualizer for playing song?
+    /// - fix bug where toggles still toggle during fading
+    /// - add toggle image functionality
+    /// - add toggle song name/lable functionality
     /// </summary>
     //[SerializeField]
     //private AudioClip clip1, clip2, clip3, clip4, clip5, clip6, clip7, clip8, clip9;
