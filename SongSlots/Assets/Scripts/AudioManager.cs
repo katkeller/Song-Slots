@@ -35,6 +35,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private Slider fadeTimeSlider, volumeSlider;
 
+    [SerializeField]
+    private Toggle[] toggle = new Toggle[9];
+
     private AudioClip currentPlayingClip;
     private AudioClip clipToPlay;
     private int buttonNumberToPlay;
@@ -60,6 +63,11 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
+        SetClipToBePlayedByKey();
+    }
+
+    private void SetClipToBePlayedByKey()
+    {
         if (!isFading)
         {
             //find out if there's a cleaner way to do this?
@@ -67,46 +75,55 @@ public class AudioManager : MonoBehaviour
             {
                 clipToPlay = audioClip[0];
                 FadeBetweenClips();
+                toggle[0].isOn = true;
             }
             else if (Input.GetButtonDown("2"))
             {
                 clipToPlay = audioClip[1];
                 FadeBetweenClips();
+                toggle[1].isOn = true;
             }
             else if (Input.GetButtonDown("3"))
             {
                 clipToPlay = audioClip[2];
                 FadeBetweenClips();
+                toggle[2].isOn = true;
             }
             else if (Input.GetButtonDown("4"))
             {
                 clipToPlay = audioClip[3];
                 FadeBetweenClips();
+                toggle[3].isOn = true;
             }
             else if (Input.GetButtonDown("5"))
             {
                 clipToPlay = audioClip[4];
                 FadeBetweenClips();
+                toggle[4].isOn = true;
             }
             else if (Input.GetButtonDown("6"))
             {
                 clipToPlay = audioClip[5];
                 FadeBetweenClips();
+                toggle[5].isOn = true;
             }
             else if (Input.GetButtonDown("7"))
             {
                 clipToPlay = audioClip[6];
                 FadeBetweenClips();
+                toggle[6].isOn = true;
             }
             else if (Input.GetButtonDown("8"))
             {
                 clipToPlay = audioClip[7];
                 FadeBetweenClips();
+                toggle[7].isOn = true;
             }
             else if (Input.GetButtonDown("9"))
             {
                 clipToPlay = audioClip[8];
                 FadeBetweenClips();
+                toggle[8].isOn = true;
             }
         }
     }
@@ -133,6 +150,11 @@ public class AudioManager : MonoBehaviour
             fadingText.text = "Cannot change fade speed while fading.";
         }
     }
+
+    //public void ResetVolumeSlider()
+    //{
+        
+    //}
 
     public void SetVolume()
     {
@@ -232,6 +254,7 @@ public class AudioManager : MonoBehaviour
         currentPlayingClip = clipToPlay;
         fadingText.text = string.Empty;
         isFading = false;
+        volumeSlider.value = 1.0f;
     }
 
     private IEnumerator FadeInAudio()

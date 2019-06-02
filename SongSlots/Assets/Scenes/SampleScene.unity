@@ -6738,6 +6738,16 @@ MonoBehaviour:
   fadingTextString: Fading...
   fadeTimeSlider: {fileID: 183180468}
   volumeSlider: {fileID: 1181839979}
+  toggle:
+  - {fileID: 1504390436}
+  - {fileID: 1483027440}
+  - {fileID: 1361081128}
+  - {fileID: 1823166442}
+  - {fileID: 2062051996}
+  - {fileID: 191679235}
+  - {fileID: 74693345}
+  - {fileID: 358752752}
+  - {fileID: 401758681}
 --- !u!82 &2029555631
 AudioSource:
   m_ObjectHideFlags: 0
