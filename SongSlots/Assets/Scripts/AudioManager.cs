@@ -45,6 +45,8 @@ public class AudioManager : MonoBehaviour
     private AudioSource currentAudioSource;
     private AudioSource audioSourceToPlay;
     private bool isFading = false;
+    private float currentFadeSpeed = 5.0f;
+    private float currentVolume = 1.0f;
 
     //public static Event Action ChangeAudioSourceToSample;
 
@@ -142,19 +144,16 @@ public class AudioManager : MonoBehaviour
     {
         if (!isFading)
         {
-            fadingCurrentValueText.text = fadeTimeSlider.value.ToString();
             timeToFade = fadeTimeSlider.value;
+            fadingCurrentValueText.text = fadeTimeSlider.value.ToString();
+            currentFadeSpeed = timeToFade;
         }
         else if (isFading)
         {
+            fadeTimeSlider.value = currentFadeSpeed;
             fadingText.text = "Cannot change fade speed while fading.";
         }
     }
-
-    //public void ResetVolumeSlider()
-    //{
-        
-    //}
 
     public void SetVolume()
     {
@@ -162,9 +161,11 @@ public class AudioManager : MonoBehaviour
         {
             volumeCurrentValueText.text = volumeSlider.value.ToString("0.00");
             currentAudioSource.volume = volumeSlider.value;
+            currentVolume = volumeSlider.value;
         }
         else if (isFading)
         {
+            volumeSlider.value = currentVolume;
             fadingText.text = "Cannot change volume while fading.";
         }
     }
